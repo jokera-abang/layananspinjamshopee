@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Layanan Spinjam Shopee</title>
+
+  <meta
+    name="description"
+    content="Pusat informasi dan bantuan pelanggan."
+  >
+
+  <meta
+    name="robots"
+    content="index,follow"
+  >
+
+  <style>
+    /* ==================================================
+       ROOT
+    ================================================== */
+
+    :root {
+      --orange: #ff7900;
+      --orange-dark: #e96800;
+      --orange-light: #fff3e8;
+
+      --green: #25d366;
+
+      --dark: #202124;
+      --gray: #687078;
+      --light: #f7f7f8;
+      --white: #ffffff;
+
+      --border: #e6e6e6;
+
+      --shadow-small:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+      --shadow-medium:
+        0 10px 35px rgba(0, 0, 0, 0.06);
+
+      --shadow-large:
+        0 15px 50px rgba(0, 0, 0, 0.20);
+    }
+
+
+    /* ==================================================
+       RESET
+    ================================================== */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--dark);
+      background: var(--light);
+
+      line-height: 1.6;
+
+      overflow-x: hidden;
+    }
+
+
+    img {
+      max-width: 100%;
+    }
+
+
+    a {
+      color: inherit;
+    }
+
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+
+    button {
+      cursor: pointer;
+    }
+
+
+    /* ==================================================
+       COMMON
+    ================================================== */
+
+    .container {
+      width: min(
+        calc(100% - 28px),
+        920px
+      );
+
+      margin-inline: auto;
+    }
+
+
+    .icon {
+      width: 22px;
+      height: 22px;
+
+      fill: none;
+
+      stroke: currentColor;
+      stroke-width: 2;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      flex-shrink: 0;
+    }
+
+
+    /* ==================================================
+       HEADER
+    ================================================== */
+
+    header {
+      position: sticky;
+      top: 0;
+
+      z-index: 1000;
+
+      background:
+        rgba(255, 255, 255, 0.97);
+
+      border-bottom:
+        1px solid var(--border);
+
+      backdrop-filter:
+        blur(10px);
+    }
+
+
+    .nav {
+      min-height: 68px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+
+    .brand {
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      min-width: 0;
+    }
+
+
+    .logo {
+      width: 43px;
+      height: 43px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      border-radius: 12px;
+
+      color: var(--white);
+      background: var(--orange);
+    }
+
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+
+    /* ICON BARU DI UJUNG JUDUL */
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+
+      display: block;
+
+      object-fit: contain;
+
+      flex-shrink: 0;
+
+      border-radius: 6px;
+    }
+
+
+    .online {
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+
+      padding: 6px 11px;
+
+      border-radius: 30px;
+
+      background: #eaf8ef;
+      color: #16803c;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      white-space: nowrap;
+    }
+
+
+    .online-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #16a34a;
+    }
+
+
+    /* ==================================================
+       BANNER
+    ================================================== */
+
+    .banner-section {
+      width: 100%;
+
+      padding: 16px 0 0;
+
+      background: var(--light);
+    }
+
+
+    .banner-container {
+      width: min(
+        calc(100% - 28px),
+        1100px
+      );
+
+      margin-inline: auto;
+    }
+
+
+    .banner-image {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      max-height: 360px;
+
+      object-fit: cover;
+      object-position: center;
+
+      border-radius: 18px;
+
+      box-shadow:
+        var(--shadow-small);
+    }
+
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
+    .hero {
+      padding: 55px 0 42px;
+
+      background:
+        radial-gradient(
+          circle at 90% 0%,
+          #ffe1ca 0,
+          transparent 35%
+        ),
+        var(--white);
+    }
+
+
+    .hero-content {
+      max-width: 720px;
+
+      margin-inline: auto;
+
+      text-align: center;
+    }
+
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 7px;
+
+      padding: 7px 14px;
+
+      border-radius: 30px;
+
+      background:
+        var(--orange-light);
+
+      border:
+        1px solid #ffd6b5;
+
+      color:
+        var(--orange-dark);
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+
+    h1 {
+      margin-top: 17px;
+
+      font-size:
+        clamp(32px, 7vw, 52px);
+
+      line-height: 1.1;
+
+      letter-spacing: -1.5px;
+    }
+
+
+    h1 span {
+      color: var(--orange);
+    }
+
+
+    .hero-text {
+      max-width: 630px;
+
+      margin: 18px auto 0;
+
+      color: var(--gray);
+
+      font-size: 16px;
+    }
+
+
+    /* ==================================================
+       BUTTONS
+    ================================================== */
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 27px;
+    }
+
+
+    .btn {
+      min-height: 50px;
+
+      padding: 12px 20px;
+
+      border: 0;
+      border-radius: 12px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+
+    .btn-orange {
+      color: var(--white);
+
+      background:
+        var(--orange);
+    }
+
+
+    .btn-green {
+      color: var(--white);
+
+      background:
+        var(--green);
+    }
+
+
+    /* ==================================================
+       SECTION
+    ================================================== */
+
+    .section {
+      padding: 42px 0;
+    }
+
+
+    .section-title {
+      margin-bottom: 23px;
+
+      text-align: center;
+    }
+
+
+    .section-title h2 {
+      font-size: 25px;
+      line-height: 1.25;
+    }
+
+
+    .section-title p {
+      margin-top: 5px;
+
+      color: var(--gray);
+
+      font-size: 14px;
+    }
+
+
+    /* ==================================================
+       SERVICE CARDS
+    ================================================== */
+
+    .cards {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+    }
+
+
+    .card {
+      padding: 24px 18px;
+
+      background: var(--white);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 16px;
+
+      text-align: center;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    .card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        var(--shadow-medium);
+    }
+
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+
+      margin: 0 auto 13px;
+
+      border-radius: 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--orange);
+
+      background:
+        var(--orange-light);
+    }
+
+
+    .card h3 {
+      margin-bottom: 6px;
+
+      font-size: 16px;
+    }
+
+
+    .card p {
+      color: var(--gray);
+
+      font-size: 13px;
+    }
+
+
+    /* ==================================================
+       DISCLOSURE
+    ================================================== */
+
+    .disclosure {
+      padding: 22px;
+
+      border:
+        1px solid #f1c9a7;
+
+      border-radius: 16px;
+
+      background:
+        #fff8f2;
+    }
+
+
+    .disclosure h2 {
+      margin-bottom: 10px;
+
+      color:
+        var(--orange-dark);
+
+      font-size: 20px;
+    }
+
+
+    .disclosure p,
+    .disclosure li {
+      color: #5f6368;
+
+      font-size: 13px;
+    }
+
+
+    .disclosure ul {
+      padding-left: 20px;
+
+      margin-top: 10px;
+    }
+
+
+    .disclosure li + li {
+      margin-top: 5px;
+    }
+
+
+    /* ==================================================
+       BUSINESS INFORMATION
+    ================================================== */
+
+    .info-box {
+      padding: 24px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      background:
+        var(--white);
+    }
+
+
+    .info-row {
+      display: flex;
+
+      gap: 13px;
+
+      padding: 14px 0;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+
+    .info-row:last-child {
+      border-bottom: 0;
+    }
+
+
+    .info-icon {
+      flex-shrink: 0;
+
+      color: var(--orange);
+    }
+
+
+    .info-label {
+      color: var(--gray);
+
+      font-size: 12px;
+    }
+
+
+    .info-value {
+      font-weight: 700;
+
+      font-size: 14px;
+
+      overflow-wrap: anywhere;
+    }
+
+
+    /* ==================================================
+       CONTACT
+    ================================================== */
+
+    .contact-box {
+      padding: 27px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 20px;
+
+      background:
+        var(--white);
+
+      box-shadow:
+        var(--shadow-medium);
+    }
+
+
+    .contact-box > p {
+      margin: 5px 0 20px;
+
+      color: var(--gray);
+
+      font-size: 14px;
+    }
+
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+
+    label {
+      display: block;
+
+      margin-bottom: 6px;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+
+    input,
+    textarea {
+      width: 100%;
+
+      padding: 13px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 10px;
+
+      outline: none;
+
+      background:
+        var(--white);
+
+      color:
+        var(--dark);
+
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+
+    input:focus,
+    textarea:focus {
+      border-color:
+        var(--orange);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(255, 121, 0, 0.1);
+    }
+
+
+    textarea {
+      min-height: 110px;
+
+      resize: vertical;
+    }
+
+
+    .full {
+      width: 100%;
+    }
+
+
+    /* ==================================================
+       FAQ
+    ================================================== */
+
+    .faq {
+      margin-bottom: 10px;
+
+      overflow: hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 14px;
+
+      background:
+        var(--white);
+    }
+
+
+    .faq button {
+      width: 100%;
+
+      padding: 16px;
+
+      border: 0;
+
+      background:
+        var(--white);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 10px;
+
+      text-align: left;
+
+      font-weight: 800;
+    }
+
+
+    .faq button .icon {
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .faq.active button .icon {
+      transform:
+        rotate(180deg);
+    }
+
+
+    .faq-answer {
+      display: none;
+
+      padding: 0 16px 16px;
+
+      color: var(--gray);
+
+      font-size: 14px;
+    }
+
+
+    .faq.active .faq-answer {
+      display: block;
+    }
+
+
+    .faq-answer a {
+      color: var(--orange-dark);
+
+      font-weight: 700;
+    }
+
+
+    /* ==================================================
+       FLOATING BUTTONS
+    ================================================== */
+
+    .floating {
+      position: fixed;
+
+      right: 17px;
+
+      z-index: 2000;
+
+      width: 57px;
+      height: 57px;
+
+      border: 0;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--white);
+
+      box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.2);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .floating:hover {
+      transform:
+        translateY(-3px);
+    }
+
+
+    .floating svg {
+      width: 26px;
+      height: 26px;
+    }
+
+
+    .chat-button {
+      bottom: 87px;
+
+      background:
+        var(--orange);
+    }
+
+
+    .whatsapp {
+      bottom: 17px;
+
+      background:
+        var(--green);
+
+      text-decoration: none;
+    }
+
+
+    /* ==================================================
+       CHAT
+    ================================================== */
+
+    .chat-box {
+      position: fixed;
+
+      right: 17px;
+      bottom: 153px;
+
+      z-index: 1999;
+
+      width:
+        min(360px, calc(100% - 34px));
+
+      display: none;
+
+      overflow: hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      background:
+        var(--white);
+
+      box-shadow:
+        var(--shadow-large);
+    }
+
+
+    .chat-box.active {
+      display: block;
+    }
+
+
+    .chat-header {
+      padding: 15px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      color: var(--white);
+
+      background:
+        var(--orange);
+    }
+
+
+    .chat-header strong {
+      display: block;
+
+      font-size: 14px;
+    }
+
+
+    .chat-header small {
+      font-size: 11px;
+
+      opacity: 0.9;
+    }
+
+
+    .chat-close {
+      padding: 4px;
+
+      border: 0;
+
+      color: var(--white);
+
+      background:
+        transparent;
+    }
+
+
+    .chat-body {
+      padding: 15px;
+
+      background:
+        #fafafa;
+    }
+
+
+    .chat-message {
+      margin-bottom: 12px;
+
+      padding: 12px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 12px;
+
+      background:
+        var(--white);
+
+      font-size: 13px;
+    }
+
+
+    .chat-input {
+      display: flex;
+
+      gap: 7px;
+    }
+
+
+    .chat-input input {
+      min-width: 0;
+    }
+
+
+    .chat-send {
+      width: 48px;
+
+      flex-shrink: 0;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      color: var(--white);
+
+      background:
+        var(--orange);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    /* ==================================================
+       FOOTER
+    ================================================== */
+
+    footer {
+      margin-top: 25px;
+
+      padding: 35px 0;
+
+      color: var(--white);
+
+      background:
+        #202020;
+    }
+
+
+    .footer-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr 1fr;
+
+      gap: 30px;
+    }
+
+
+    footer h3 {
+      margin-bottom: 8px;
+
+      font-size: 16px;
+    }
+
+
+    footer p,
+    footer li,
+    footer a {
+      color: #aaa;
+
+      font-size: 13px;
+    }
+
+
+    footer ul {
+      padding-left: 18px;
+    }
+
+
+    footer li + li {
+      margin-top: 5px;
+    }
+
+
+    footer a:hover {
+      color: var(--white);
+    }
+
+
+    .copyright {
+      margin-top: 25px;
+
+      padding-top: 18px;
+
+      border-top:
+        1px solid #333;
+
+      color: #888;
+
+      font-size: 12px;
+    }
+
+
+    /* ==================================================
+       MOBILE
+    ================================================== */
+
+    @media (max-width: 650px) {
+
+      .container {
+        width:
+          calc(100% - 24px);
+      }
+
+
+      /* HEADER */
+
+      .nav {
+        min-height: 62px;
+      }
+
+
+      .logo {
+        width: 38px;
+        height: 38px;
+
+        border-radius: 10px;
+      }
+
+
+      .brand-name {
+        font-size: 14px;
+      }
+
+
+      .brand-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+
+      .online {
+        display: none;
+      }
+
+
+      /* BANNER */
+
+      .banner-section {
+        padding: 10px 0 0;
+      }
+
+
+      .banner-container {
+        width:
+          calc(100% - 24px);
+      }
+
+
+      .banner-image {
+        width: 100%;
+        height: auto;
+
+        max-height: none;
+
+        object-fit: contain;
+
+        border-radius: 12px;
+      }
+
+
+      /* HERO */
+
+      .hero {
+        padding:
+          43px 0 35px;
+      }
+
+
+      h1 {
+        font-size:
+          clamp(30px, 9vw, 42px);
+      }
+
+
+      .hero-text {
+        font-size: 14px;
+      }
+
+
+      /* BUTTONS */
+
+      .buttons {
+        flex-direction: column;
+
+        width: 100%;
+      }
+
+
+      .buttons .btn {
+        width: 100%;
+      }
+
+
+      /* SECTIONS */
+
+      .section {
+        padding: 34px 0;
+      }
+
+
+      .section-title h2 {
+        font-size: 23px;
+      }
+
+
+      /* CARDS */
+
+      .cards {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      /* INFO */
+
+      .info-box {
+        padding: 18px;
+      }
+
+
+      .info-row {
+        gap: 10px;
+      }
+
+
+      /* CONTACT */
+
+      .contact-box {
+        padding: 21px;
+      }
+
+
+      /* FOOTER */
+
+      .footer-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      /* CHAT */
+
+      .chat-box {
+        right: 12px;
+
+        width:
+          calc(100% - 24px);
+
+        bottom: 145px;
+      }
+
+
+      .floating {
+        right: 14px;
+      }
+
+
+      .chat-button {
+        bottom: 82px;
+      }
+
+
+      .whatsapp {
+        bottom: 14px;
+      }
+    }
+
+
+    /* ==================================================
+       EXTRA SMALL SCREEN
+    ================================================== */
+
+    @media (max-width: 380px) {
+
+      .brand {
+        gap: 6px;
+      }
+
+
+      .brand-name {
+        font-size: 13px;
+      }
+
+
+      .brand-icon {
+        width: 21px;
+        height: 21px;
+      }
+
+
+      .logo {
+        width: 35px;
+        height: 35px;
+      }
+
+
+      .hero {
+        padding-top: 35px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- ==================================================
+       SVG SYMBOLS
+  ================================================== -->
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    style="
+      position:absolute;
+      width:0;
+      height:0;
+      overflow:hidden;
+    "
+    aria-hidden="true"
+  >
+
+    <symbol id="shield" viewBox="0 0 24 24">
+      <path d="M12 3l7 3v5c0 4.5-2.9 8.5-7 10-4.1-1.5-7-5.5-7-10V6l7-3z"/>
+      <path d="M9 12l2 2 4-4"/>
+    </symbol>
+
+
+    <symbol id="message" viewBox="0 0 24 24">
+      <path d="M20 11.5a7.5 7.5 0 01-8 7.5 8.8 8.8 0 01-3.5-.7L4 20l1.7-3.8A7.2 7.2 0 014 11.5 7.5 7.5 0 0112 4a7.5 7.5 0 018 7.5z"/>
+    </symbol>
+
+
+    <symbol id="card" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"/>
+      <path d="M3 10h18"/>
+      <path d="M7 15h4"/>
+    </symbol>
+
+
+    <symbol id="refresh" viewBox="0 0 24 24">
+      <path d="M20 11a8 8 0 00-15-3"/>
+      <path d="M4 4v5h5"/>
+      <path d="M4 13a8 8 0 0015 3"/>
+      <path d="M20 20v-5h-5"/>
+    </symbol>
+
+
+    <symbol id="help" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M9.7 9a2.5 2.5 0 114.2 1.8c-1 .9-1.9 1.3-1.9 2.7"/>
+      <path d="M12 17h.01"/>
+    </symbol>
+
+
+    <symbol id="map" viewBox="0 0 24 24">
+      <path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/>
+      <path d="M9 3v15"/>
+      <path d="M15 6v15"/>
+    </symbol>
+
+
+    <symbol id="mail" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"/>
+      <path d="M3 7l9 6 9-6"/>
+    </symbol>
+
+
+    <symbol id="phone" viewBox="0 0 24 24">
+      <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.4 19.4 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/>
+    </symbol>
+
+
+    <symbol id="clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </symbol>
+
+
+    <symbol id="chevron" viewBox="0 0 24 24">
+      <path d="M6 9l6 6 6-6"/>
+    </symbol>
+
+
+    <symbol id="close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18"/>
+    </symbol>
+
+
+    <symbol id="send" viewBox="0 0 24 24">
+      <path d="M22 2L11 13"/>
+      <path d="M22 2l-7 20-4-9-9-4L22 2z"/>
+    </symbol>
+
+
+    <symbol id="check" viewBox="0 0 24 24">
+      <path d="M20 6L9 17l-5-5"/>
+    </symbol>
+
+
+    <symbol id="whatsapp" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        stroke="none"
+        d="M12 2.2a9.7 9.7 0 00-8.4 14.55L2.4 21.6l4.98-1.18A9.7 9.7 0 1012 2.2zm0 17.7a8 8 0 01-4.08-1.12l-.29-.17-2.95.7.71-2.87-.19-.3A8 8 0 1112 19.9zm4.4-5.98c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.17-1.39-1.31-1.63-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.15 1.51.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"
+      />
+    </symbol>
+
+  </svg>
+
+
+  <!-- ==================================================
+       HEADER
+  ================================================== -->
+
+  <header>
+
+    <div class="container nav">
+
+      <div class="brand">
+
+        <div class="logo">
+
+          <svg class="icon" aria-hidden="true">
+            <use href="#shield"></use>
+          </svg>
+
+        </div>
+
+
+        <span class="brand-name">
+          Layanan Spinjam Shopee
+        </span>
+
+
+        <!-- ICON DARI URL YANG ANDA BERIKAN -->
+
+        <img
+          class="brand-icon"
+          src="https://cdn.phototourl.com/free/2026-08-25-689b70e6-1555-4d4e-90cc-22f89ca87e8c.png"
+          alt="Icon Call Center Spinjam"
+          loading="eager"
+        >
+
+      </div>
+
+
+      <div class="online">
+
+        <span class="online-dot"></span>
+
+        Layanan Spinjam 24jam
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ==================================================
+       BANNER
+  ================================================== -->
+
+  <section
+    class="banner-section"
+    aria-label="Banner informasi"
+  >
+
+    <div class="banner-container">
+
+      <img
+        src="https://cdn.phototourl.com/free/2026-08-25-70d92f3d-244b-4602-9b1e-985f2da5c1da.png"
+        alt="Banner informasi dan bantuan"
+        class="banner-image"
+        loading="eager"
+      >
+
+    </div>
+
+  </section>
+
+
+  <main>
+
+    <!-- ==================================================
+         HERO
+    ================================================== -->
+
+    <section class="hero">
+
+      <div class="container hero-content">
+
+        <div class="badge">
+
+          <svg class="icon" aria-hidden="true">
+            <use href="#check"></use>
+          </svg>
+
+          LAYANAN BANTUAN
+
+        </div>
+
+
+        <h1>
+          Pusat & Bantuan
+          <span>Spinjam</span>
+        </h1>
+
+
+        <p class="hero-text">
+          Untuk informasi mengenai kendala pembayaran,
+          pembatalan dan pertanyaan lainnya.
+          Sampaikan kebutuhan Anda melalui kanal
+          layanan yang tersedia.
+        </p>
+
+
+        <div class="buttons">
+
+          <a
+            class="btn btn-green"
+            href="https://wa.me/62817303538?text=Halo%20Admin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <svg class="icon" aria-hidden="true">
+              <use href="#whatsapp"></use>
+            </svg>
+
+            Chat WhatsApp
+
+          </a>
+
+
+          <a
+            class="btn btn-orange"
+            href="#contact"
+          >
+
+            <svg class="icon" aria-hidden="true">
+              <use href="#message"></use>
+            </svg>
+
+            Hubungi Kami
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  <!-- ==================================================
+       LIVE CHAT BUTTON
+  ================================================== -->
+
+  <button
+    class="floating chat-button"
+    onclick="toggleChat()"
+    aria-label="Buka Live Chat"
+    type="button"
+  >
+
+    <svg class="icon" aria-hidden="true">
+      <use href="#message"></use>
+    </svg>
+
+  </button>
+
+
+  <!-- ==================================================
+       LIVE CHAT BOX
+  ================================================== -->
+
+  <div
+    class="chat-box"
+    id="chatBox"
+    aria-label="Live Chat"
+  >
+
+    <div class="chat-header">
+
+      <div>
+
+        <strong>
+          Live Chat
+        </strong>
+
+        <small>
+          Pusat Informasi · Online
+        </small>
+
+      </div>
+
+
+      <button
+        class="chat-close"
+        onclick="toggleChat()"
+        aria-label="Tutup Live Chat"
+        type="button"
+      >
+
+        <svg class="icon" aria-hidden="true">
+          <use href="#close"></use>
+        </svg>
+
+      </button>
+
+    </div>
+
+
+    <div class="chat-body">
+
+      <div class="chat-message">
+
+        Halo 👋
+        <br>
+
+        Silakan tuliskan kebutuhan bantuan Anda.
+
+      </div>
+
+
+      <div class="chat-input">
+
+        <input
+          id="chatMessage"
+          type="text"
+          placeholder="Tulis pesan..."
+          autocomplete="off"
+          onkeydown="
+            if (event.key === 'Enter') {
+              sendChat();
+            }
+          "
+        >
+
+
+        <button
+          class="chat-send"
+          onclick="sendChat()"
+          aria-label="Kirim pesan"
+          type="button"
+        >
+
+          <svg class="icon" aria-hidden="true">
+            <use href="#send"></use>
+          </svg>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================================================
+       WHATSAPP FLOATING BUTTON
+  ================================================== -->
+
+  <a
+    class="floating whatsapp"
+    href="https://wa.me/62817303538?text=Halo%20Admin"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Hubungi melalui WhatsApp"
+  >
+
+    <svg class="icon" aria-hidden="true">
+      <use href="#whatsapp"></use>
+    </svg>
+
+  </a>
+
+
+  <!-- ==================================================
+       JAVASCRIPT
+  ================================================== -->
+
+  <script>
+
+    /* ================================================
+       WHATSAPP NUMBER
+    ================================================ */
+
+    const whatsappNumber =
+      "62817303538";
+
+
+    /* ================================================
+       YEAR
+    ================================================ */
+
+    document
+      .getElementById("year")
+      .textContent =
+      new Date().getFullYear();
+
+
+    /* ================================================
+       LIVE CHAT
+    ================================================ */
+
+    function toggleChat() {
+
+      const chatBox =
+        document.getElementById("chatBox");
+
+      chatBox.classList.toggle("active");
+
+    }
+
+
+    /* ================================================
+       SEND CHAT
+    ================================================ */
+
+    function sendChat() {
+
+      const input =
+        document.getElementById("chatMessage");
+
+      const message =
+        input.value.trim();
+
+
+      if (!message) {
+
+        input.focus();
+
+        return;
+
+      }
+
+
+      const url =
+        "https://wa.me/62817303538" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+      window.open(
+        url,
+        "_blank"
+      );
+
+
+      input.value = "";
+
+    }
+
+
+    /* ================================================
+       CONTACT FORM
+    ================================================ */
+
+    document
+      .getElementById("contactForm")
+      .addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+
+          const name =
+            document
+              .getElementById("name")
+              .value
+              .trim();
+
+
+          const phone =
+            document
+              .getElementById("phone")
+              .value
+              .trim();
+
+
+          const message =
+            document
+              .getElementById("message")
+              .value
+              .trim();
+
+
+          const text =
+            "Halo Admin\n\n" +
+            "Nama: " +
+            name +
+            "\n" +
+            "WhatsApp: " +
+            phone +
+            "\n" +
+            "Pesan: " +
+            message;
+
+
+          const url =
+            "https://wa.me/62817303538" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(text);
+
+
+          window.open(
+            url,
+            "_blank"
+          );
+
+        }
+      );
+
+
+    /* ================================================
+       FAQ
+    ================================================ */
+
+    function toggleFaq(button) {
+
+      const faq =
+        button.parentElement;
+
+      const isActive =
+        faq.classList.toggle("active");
+
+
+      button.setAttribute(
+        "aria-expanded",
+        isActive
+      );
+
+    }
+<script>
+
+  const whatsappNumber = "62817303538";
+
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+  function toggleChat() {
+
+    document
+      .getElementById("chatBox")
+      .classList
+      .toggle("active");
+
+  }
+
+
+  function sendChat() {
+
+    const input =
+      document.getElementById("chatMessage");
+
+    const message =
+      input.value.trim();
+
+    if (!message) {
+
+      input.focus();
+
+      return;
+
+    }
+
+    const url =
+      "https://wa.me/62817303538" +
+      whatsappNumber +
+      "?text=" +
+      encodeURIComponent(message);
+
+    window.open(url, "_blank");
+
+    input.value = "";
+
+  }
+
+
+  document
+    .getElementById("contactForm")
+    .addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        const name =
+          document
+            .getElementById("name")
+            .value
+            .trim();
+
+        const phone =
+          document
+            .getElementById("phone")
+            .value
+            .trim();
+
+        const topic =
+          document
+            .getElementById("topic")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("message")
+            .value
+            .trim();
+
+        const text =
+          "Halo CS Spinjam\n\n" +
+          "Nama: " + name + "\n" +
+          "WhatsApp: " + phone + "\n" +
+          "Topik: " + topic + "\n" +
+          "Pesan: " + message;
+
+        const url =
+          "https://wa.me/62817303538" +
+          whatsappNumber +
+          "?text=" +
+          encodeURIComponent(text);
+
+        window.open(url, "_blank");
+
+      }
+    );
+
+
+  function toggleFaq(button) {
+
+    button
+      .parentElement
+      .classList
+      .toggle("active");
+
+  }
+
+</script>
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="container">
+
+    <h3>
+      LAYANAN SPINJAM
+    </h3>
+
+    <p>
+      Layanan informasi dan bantuan pelanggan.
+    </p>
+
+    <div class="footer-links">
+
+      <a href="index.html">
+        Beranda
+      </a>
+
+      <a href="privacy.html">
+        Kebijakan Privasi
+      </a>
+
+      <a href="terms.html">
+        Syarat & Ketentuan
+      </a>
+
+      <a href="kontak.html">
+        Kontak
+      </a>
+
+    </div>
+
+    <div class="copyright">
+
+      © <span id="year"></span>
+      LAYANAN SPINJAM.
+      Semua hak dilindungi.
+
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
